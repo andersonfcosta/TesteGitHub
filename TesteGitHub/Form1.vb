@@ -10,6 +10,7 @@ Public Class Form1
         Dim strSQL As String
 
         'Pegar os dados no SKYPE
+        'segunda linha de comentário
 
         conn.ConnectionString = "server=localhost;user id=root;password=mac;database=northwind"
 
