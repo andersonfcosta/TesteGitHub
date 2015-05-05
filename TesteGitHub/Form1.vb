@@ -9,6 +9,8 @@ Public Class Form1
         Dim MySQLDataSet As DataSet
         Dim strSQL As String
 
+        'Pegar os dados no SKYPE
+
         conn.ConnectionString = "server=localhost;user id=root;password=mac;database=northwind"
 
         strSQL = "SELECT * FROM northwind.employees"
