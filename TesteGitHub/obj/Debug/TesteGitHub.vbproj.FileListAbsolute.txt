@@ -1,0 +1,3 @@
+C:\Users\Anderson\AppData\Local\Temporary Projects\TesteGitHub\bin\Debug\TesteGitHub.exe.config
+E:\GitHub\Teste\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.exe.config
+E:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.exe.config
