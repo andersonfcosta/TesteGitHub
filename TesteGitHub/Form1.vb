@@ -17,14 +17,14 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub mskCPF_TextChanged(sender As Object, e As EventArgs) Handles mskCPF.TextChanged
-        If mskCPF.Text <> "   .   .   -" Then
-            cbbEmail.Enabled = False
-            cbbEmail.DataSource = Nothing
-        Else
-            cbbEmail.Enabled = True
-        End If
-    End Sub
+    'Private Sub mskCPF_TextChanged(sender As Object, e As EventArgs) Handles mskCPF.TextChanged
+    '    If mskCPF.Text <> "   .   .   -" Then
+    '        cbbEmail.Enabled = False
+    '        cbbEmail.DataSource = Nothing
+    '    Else
+    '        cbbEmail.Enabled = True
+    '    End If
+    'End Sub
 
     Private Sub cbbEmail_LostFocus(sender As Object, e As EventArgs) Handles cbbEmail.LostFocus
         Dim objConn As New MySqlConnection(strConexo)
@@ -34,13 +34,14 @@ Public Class Form1
         Try
             objConn.Open()
             Try
-                objMySQLAdapter = New MySqlDataAdapter("SELECT usuarios.email_txf, pago_sel,formulario_txf, evento_txf " _
-                                                     & "FROM usuarios INNER JOIN inscricoes " _
-                                                     & "ON usuarios.email_txf = usuarios.email_txf " _
-                                                     & "WHERE usuarios.email_txf LIKE '%" & cbbEmail.Text.ToString & "%'", objConn)
-                objMySQLAdapter.Fill(dtsMySQL, "usuarios")
+                objMySQLAdapter = New MySqlDataAdapter("SELECT inscricoes.email_txf, pago_sel, formulario_txf, evento_txf, cpf_txf " _
+                                                     & "FROM usuarios RIGHT JOIN inscricoes " _
+                                                     & "ON usuarios.email_txf = inscricoes.email_txf " _
+                                                     & "WHERE inscricoes.Email_txf = '" & cbbEmail.Text.ToString & "'", objConn)
+                objMySQLAdapter.Fill(dtsMySQL)
                 cbbEmail.DataSource = dtsMySQL.Tables(0)
-                'mskCPF.Text = dtsMySQL.Tables(0).Rows.Item("cpf_txf").ToString
+                cbbEmail.DisplayMember = "email_txf"
+                mskCPF.Text = dtsMySQL.Tables(0).Rows(0).Item("cpf_txf").ToString
             Catch myerro As MySqlException
                 MsgBox("Erro de leitura no banco de dados : " & myerro.Message)
             End Try
