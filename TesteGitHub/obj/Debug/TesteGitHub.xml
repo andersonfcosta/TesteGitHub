@@ -15,7 +15,19 @@ TesteGitHub
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
+</member><member name="P:TesteGitHub.My.Resources.Resources._1431225796_Search_256x256_32">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:TesteGitHub.My.Resources.Resources.Conexao">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:TesteGitHub.My.Resources.Resources.document_search">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:TesteGitHub.My.Resources.Resources.download">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

@@ -2,11 +2,11 @@ C:\Users\Anderson\AppData\Local\Temporary Projects\TesteGitHub\bin\Debug\TesteGi
 E:\GitHub\Teste\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.exe.config
 E:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.exe
 E:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.exe.config
+E:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.pdb
+E:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.xml
 E:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.Form1.resources
 E:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.Resources.resources
 E:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.vbproj.GenerateResource.Cache
 E:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.exe
 E:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.xml
 E:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.pdb
-E:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.pdb
-E:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.xml

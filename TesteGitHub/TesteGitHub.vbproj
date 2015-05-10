@@ -126,6 +126,15 @@
   <ItemGroup>
     <None Include="Resources\Conexao.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1431225796_Search_256x256-32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

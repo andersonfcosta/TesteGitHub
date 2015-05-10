@@ -22,124 +22,120 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.cbbEmail = New System.Windows.Forms.ComboBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.gboEtiqueta = New System.Windows.Forms.GroupBox()
-        Me.lblNome = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.mskCPF = New System.Windows.Forms.MaskedTextBox()
-        Me.btnFiltraDados = New System.Windows.Forms.Button()
+        Me.rbtCPF = New System.Windows.Forms.RadioButton()
+        Me.rbtEmail = New System.Windows.Forms.RadioButton()
+        Me.dgvDados = New System.Windows.Forms.DataGridView()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.btnPesquisa = New System.Windows.Forms.Button()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        CType(Me.dgvDados, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.gboEtiqueta.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'cbbEmail
+        'mskCPF
         '
-        Me.cbbEmail.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbbEmail.FormattingEnabled = True
-        Me.cbbEmail.Location = New System.Drawing.Point(144, 11)
-        Me.cbbEmail.Name = "cbbEmail"
-        Me.cbbEmail.Size = New System.Drawing.Size(212, 21)
-        Me.cbbEmail.TabIndex = 2
+        Me.mskCPF.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.mskCPF.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.mskCPF.Location = New System.Drawing.Point(10, 42)
+        Me.mskCPF.Mask = "999,999,999-99"
+        Me.mskCPF.Name = "mskCPF"
+        Me.mskCPF.Size = New System.Drawing.Size(343, 19)
+        Me.mskCPF.TabIndex = 10
+        Me.mskCPF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'rbtCPF
+        '
+        Me.rbtCPF.AutoSize = True
+        Me.rbtCPF.Location = New System.Drawing.Point(77, 19)
+        Me.rbtCPF.Name = "rbtCPF"
+        Me.rbtCPF.Size = New System.Drawing.Size(45, 17)
+        Me.rbtCPF.TabIndex = 12
+        Me.rbtCPF.TabStop = True
+        Me.rbtCPF.Text = "CPF"
+        Me.rbtCPF.UseVisualStyleBackColor = True
+        '
+        'rbtEmail
+        '
+        Me.rbtEmail.AutoSize = True
+        Me.rbtEmail.Location = New System.Drawing.Point(10, 19)
+        Me.rbtEmail.Name = "rbtEmail"
+        Me.rbtEmail.Size = New System.Drawing.Size(50, 17)
+        Me.rbtEmail.TabIndex = 13
+        Me.rbtEmail.TabStop = True
+        Me.rbtEmail.Text = "Email"
+        Me.rbtEmail.UseVisualStyleBackColor = True
+        '
+        'dgvDados
+        '
+        Me.dgvDados.AllowUserToAddRows = False
+        Me.dgvDados.AllowUserToDeleteRows = False
+        Me.dgvDados.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.dgvDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvDados.Location = New System.Drawing.Point(7, 108)
+        Me.dgvDados.MultiSelect = False
+        Me.dgvDados.Name = "dgvDados"
+        Me.dgvDados.RowHeadersVisible = False
+        Me.dgvDados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvDados.Size = New System.Drawing.Size(685, 149)
+        Me.dgvDados.TabIndex = 15
         '
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.TesteGitHub.My.Resources.Resources.Conexao
-        Me.PictureBox1.Location = New System.Drawing.Point(12, 12)
+        Me.PictureBox1.Location = New System.Drawing.Point(589, 11)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(84, 75)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 5
         Me.PictureBox1.TabStop = False
         '
-        'gboEtiqueta
+        'btnPesquisa
         '
-        Me.gboEtiqueta.BackColor = System.Drawing.Color.White
-        Me.gboEtiqueta.Controls.Add(Me.lblNome)
-        Me.gboEtiqueta.Location = New System.Drawing.Point(12, 93)
-        Me.gboEtiqueta.Name = "gboEtiqueta"
-        Me.gboEtiqueta.Size = New System.Drawing.Size(344, 100)
-        Me.gboEtiqueta.TabIndex = 6
-        Me.gboEtiqueta.TabStop = False
+        Me.btnPesquisa.Location = New System.Drawing.Point(377, 39)
+        Me.btnPesquisa.Name = "btnPesquisa"
+        Me.btnPesquisa.Size = New System.Drawing.Size(67, 29)
+        Me.btnPesquisa.TabIndex = 16
+        Me.btnPesquisa.Text = "Pesquisa"
+        Me.btnPesquisa.UseVisualStyleBackColor = True
         '
-        'lblNome
+        'GroupBox1
         '
-        Me.lblNome.AutoSize = True
-        Me.lblNome.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNome.Location = New System.Drawing.Point(6, 14)
-        Me.lblNome.Name = "lblNome"
-        Me.lblNome.Size = New System.Drawing.Size(277, 25)
-        Me.lblNome.TabIndex = 0
-        Me.lblNome.Text = "Anderson Ferreira da Costa"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(102, 14)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(35, 13)
-        Me.Label1.TabIndex = 7
-        Me.Label1.Text = "E-mail"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(102, 38)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(27, 13)
-        Me.Label2.TabIndex = 9
-        Me.Label2.Text = "CPF"
-        '
-        'mskCPF
-        '
-        Me.mskCPF.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.mskCPF.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.mskCPF.Location = New System.Drawing.Point(197, 37)
-        Me.mskCPF.Mask = "999,999,999-99"
-        Me.mskCPF.Name = "mskCPF"
-        Me.mskCPF.Size = New System.Drawing.Size(159, 22)
-        Me.mskCPF.TabIndex = 10
-        Me.mskCPF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'btnFiltraDados
-        '
-        Me.btnFiltraDados.Location = New System.Drawing.Point(105, 65)
-        Me.btnFiltraDados.Name = "btnFiltraDados"
-        Me.btnFiltraDados.Size = New System.Drawing.Size(251, 22)
-        Me.btnFiltraDados.TabIndex = 11
-        Me.btnFiltraDados.Text = "Filtra Dados"
-        Me.btnFiltraDados.UseVisualStyleBackColor = True
+        Me.GroupBox1.Controls.Add(Me.rbtCPF)
+        Me.GroupBox1.Controls.Add(Me.btnPesquisa)
+        Me.GroupBox1.Controls.Add(Me.PictureBox1)
+        Me.GroupBox1.Controls.Add(Me.rbtEmail)
+        Me.GroupBox1.Controls.Add(Me.mskCPF)
+        Me.GroupBox1.Location = New System.Drawing.Point(7, 12)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(678, 90)
+        Me.GroupBox1.TabIndex = 17
+        Me.GroupBox1.TabStop = False
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(365, 210)
-        Me.Controls.Add(Me.btnFiltraDados)
-        Me.Controls.Add(Me.mskCPF)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.gboEtiqueta)
-        Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.cbbEmail)
+        Me.ClientSize = New System.Drawing.Size(697, 263)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.dgvDados)
         Me.Name = "Form1"
         Me.Text = "Form1"
+        CType(Me.dgvDados, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.gboEtiqueta.ResumeLayout(False)
-        Me.gboEtiqueta.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents cbbEmail As System.Windows.Forms.ComboBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents gboEtiqueta As System.Windows.Forms.GroupBox
-    Friend WithEvents lblNome As System.Windows.Forms.Label
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents mskCPF As System.Windows.Forms.MaskedTextBox
-    Friend WithEvents btnFiltraDados As System.Windows.Forms.Button
+    Friend WithEvents rbtCPF As System.Windows.Forms.RadioButton
+    Friend WithEvents rbtEmail As System.Windows.Forms.RadioButton
+    Friend WithEvents dgvDados As System.Windows.Forms.DataGridView
+    Friend WithEvents btnPesquisa As System.Windows.Forms.Button
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
 
 End Class
