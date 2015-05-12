@@ -29,6 +29,9 @@ Partial Class Form1
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.btnPesquisa = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cboLPT = New System.Windows.Forms.ComboBox()
+        Me.lblLPT = New System.Windows.Forms.Label()
+        Me.btnSair = New System.Windows.Forms.Button()
         CType(Me.dgvDados, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -78,7 +81,7 @@ Partial Class Form1
         Me.dgvDados.Name = "dgvDados"
         Me.dgvDados.RowHeadersVisible = False
         Me.dgvDados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvDados.Size = New System.Drawing.Size(685, 149)
+        Me.dgvDados.Size = New System.Drawing.Size(678, 149)
         Me.dgvDados.TabIndex = 15
         '
         'PictureBox1
@@ -93,7 +96,7 @@ Partial Class Form1
         '
         'btnPesquisa
         '
-        Me.btnPesquisa.Location = New System.Drawing.Point(377, 39)
+        Me.btnPesquisa.Location = New System.Drawing.Point(368, 37)
         Me.btnPesquisa.Name = "btnPesquisa"
         Me.btnPesquisa.Size = New System.Drawing.Size(67, 29)
         Me.btnPesquisa.TabIndex = 16
@@ -102,6 +105,9 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.btnSair)
+        Me.GroupBox1.Controls.Add(Me.lblLPT)
+        Me.GroupBox1.Controls.Add(Me.cboLPT)
         Me.GroupBox1.Controls.Add(Me.rbtCPF)
         Me.GroupBox1.Controls.Add(Me.btnPesquisa)
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
@@ -113,12 +119,38 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 17
         Me.GroupBox1.TabStop = False
         '
+        'cboLPT
+        '
+        Me.cboLPT.FormattingEnabled = True
+        Me.cboLPT.Location = New System.Drawing.Point(46, 63)
+        Me.cboLPT.Name = "cboLPT"
+        Me.cboLPT.Size = New System.Drawing.Size(44, 21)
+        Me.cboLPT.TabIndex = 17
+        '
+        'lblLPT
+        '
+        Me.lblLPT.AutoSize = True
+        Me.lblLPT.Location = New System.Drawing.Point(13, 68)
+        Me.lblLPT.Name = "lblLPT"
+        Me.lblLPT.Size = New System.Drawing.Size(27, 13)
+        Me.lblLPT.TabIndex = 18
+        Me.lblLPT.Text = "LPT"
+        '
+        'btnSair
+        '
+        Me.btnSair.Location = New System.Drawing.Point(500, 52)
+        Me.btnSair.Name = "btnSair"
+        Me.btnSair.Size = New System.Drawing.Size(83, 34)
+        Me.btnSair.TabIndex = 19
+        Me.btnSair.Text = "Sair"
+        Me.btnSair.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(697, 263)
+        Me.ClientSize = New System.Drawing.Size(692, 263)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.dgvDados)
         Me.Name = "Form1"
@@ -137,5 +169,8 @@ Partial Class Form1
     Friend WithEvents dgvDados As System.Windows.Forms.DataGridView
     Friend WithEvents btnPesquisa As System.Windows.Forms.Button
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents lblLPT As System.Windows.Forms.Label
+    Friend WithEvents cboLPT As System.Windows.Forms.ComboBox
+    Friend WithEvents btnSair As System.Windows.Forms.Button
 
 End Class

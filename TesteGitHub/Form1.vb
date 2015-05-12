@@ -6,6 +6,12 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         rbtCPF.Checked = True
+        cboLPT.Items.Add("1")
+        cboLPT.Items.Add("2")
+        cboLPT.Items.Add("3")
+        cboLPT.Items.Add("4")
+        cboLPT.Items.Add("5")
+        cboLPT.SelectedIndex = 0
     End Sub
 
     Private Sub rbtCPF_Click(sender As Object, e As EventArgs) Handles rbtCPF.Click
@@ -73,8 +79,26 @@ Public Class Form1
            & vbCrLf & "Nome : " & dgvDados.Rows(e.RowIndex).Cells(0).Value.ToString _
            & vbCrLf & "Palestra : " & dgvDados.Rows(e.RowIndex).Cells(2).Value.ToString, MsgBoxStyle.YesNo, "Aviso do Sistema") = MsgBoxResult.Yes Then
                 '------------------
-                'Imprimir etiqueta
+                'IMPRIMIR ETIQUETA
                 '------------------
+                Dim swrArquivo As System.IO.StreamWriter
+
+                'verifica se o arquivo existe e apague se for necessário
+                If System.IO.File.Exists("C:\CSEtiqueta\arquivoEPL2.txt") Then
+                    System.IO.File.Delete("C:\CSEtiqueta\arquivoEPL2.txt")
+                End If
+                swrArquivo = System.IO.File.CreateText("C:\CSEtiqueta\arquivoEPL2.txt")
+                swrArquivo.WriteLine("N")                                                                                           'Clear image buffer
+                swrArquivo.WriteLine("A10, 20, 0, 3, 1, 1, N, " & dgvDados.Rows(e.RowIndex).Cells(0).Value.ToString)                'Texto ASCII
+                swrArquivo.WriteLine("A20, 50, 0, 4, 1, 1, N, " & dgvDados.Rows(e.RowIndex).Cells(2).Value.ToString)                'Texto ASCII
+                swrArquivo.WriteLine("P1")                                                                                          'Imprie uma etiqueta
+                swrArquivo.Close()
+
+                Try
+                    System.IO.File.Copy("C:\CSEtiqueta\arquivoEPL2.txt", "LPT " & cboLPT.Text)
+                Catch ex As Exception
+                    Console.WriteLine("Erro ao enviar arquivo para impressora em LPT " & cboLPT.Text & "!")
+                End Try
             End If
         End If
     End Sub
@@ -125,4 +149,8 @@ Public Class Form1
     '        objConn.Dispose()
     '    End Try
     'End Sub
+
+    Private Sub btnSair_Click(sender As Object, e As EventArgs) Handles btnSair.Click
+        End
+    End Sub
 End Class
