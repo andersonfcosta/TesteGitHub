@@ -79,6 +79,14 @@ Public Class Form1
            & vbCrLf & "Nome : " & dgvDados.Rows(e.RowIndex).Cells(0).Value.ToString _
            & vbCrLf & "Palestra : " & dgvDados.Rows(e.RowIndex).Cells(2).Value.ToString, MsgBoxStyle.YesNo, "Aviso do Sistema") = MsgBoxResult.Yes Then
                 '------------------
+                'REGRAS PARA VALIDAÇÃO DA ETIQUETA
+                '------------------
+                '1) Verificar o tamanho do campo NOME
+                '2) Verificar o tamanho do campo EMPRESA
+                '3) Verificar o tamanho do campo PALESTRAS
+                ') Verificar se o tipo é Expositor para verificar se o campo PAGO está como TRUE
+
+                '------------------
                 'IMPRIMIR ETIQUETA
                 '------------------
                 Dim swrArquivo As System.IO.StreamWriter
