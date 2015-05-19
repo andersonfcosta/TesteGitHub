@@ -16,7 +16,6 @@ Public Class Form1
         cboTipo.Items.Add("EXPOSITOR")
         cboLPT.SelectedIndex = 0
         cboTipo.SelectedIndex = 0
-
     End Sub
 
     Private Sub rbtCPF_Click(sender As Object, e As EventArgs) Handles rbtCPF.Click
