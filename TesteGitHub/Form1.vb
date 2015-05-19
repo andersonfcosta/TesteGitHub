@@ -11,7 +11,12 @@ Public Class Form1
         cboLPT.Items.Add("3")
         cboLPT.Items.Add("4")
         cboLPT.Items.Add("5")
+        cboTipo.Items.Add("VISITANTE")
+        cboTipo.Items.Add("IMPRENSA")
+        cboTipo.Items.Add("EXPOSITOR")
         cboLPT.SelectedIndex = 0
+        cboTipo.SelectedIndex = 0
+
     End Sub
 
     Private Sub rbtCPF_Click(sender As Object, e As EventArgs) Handles rbtCPF.Click
@@ -32,41 +37,46 @@ Public Class Form1
         Dim dtsMySQL As New DataSet
         Dim strDadosPesquisa As String
 
-        If rbtCPF.Checked = True Then
-            strDadosPesquisa = "SELECT Nome_txf, inscricoes.email_txf as Email, formulario_txf as Palestra, cpf_txf as CPF, pago_sel as Pagamento " _
-                             & "FROM usuarios RIGHT JOIN inscricoes " _
-                             & "ON usuarios.email_txf = inscricoes.email_txf " _
-                             & "WHERE Cpf_txf = '" & mskCPF.Text.ToString & "'"
-        Else
-            If rbtEmail.Checked = True Then
-                strDadosPesquisa = "SELECT Nome_txf, inscricoes.email_txf as Email, formulario_txf as Palestra, cpf_txf as CPF, pago_sel as Pagamento " _
-                            & "FROM usuarios RIGHT JOIN inscricoes " _
-                            & "ON usuarios.email_txf = inscricoes.email_txf " _
-                            & "WHERE inscricoes.Email_txf LIKE '%" & mskCPF.Text.ToString & "%'"
-            Else
-                MsgBox("Não foi selecionado o tipo de pesquisa!!!")
-            End If
-        End If
-        
-        Try
-            objConn.Open()
-            Try
-                objMySQLAdapter = New MySqlDataAdapter(strDadosPesquisa, objConn)
-                objMySQLAdapter.Fill(dtsMySQL)
-                dgvDados.DataSource = dtsMySQL.Tables(0)
-                mskCPF.Text = ""
-                dgvDados.Columns.Item(0).Width = 200
-                dgvDados.Columns.Item(1).Width = 200
-                dgvDados.Columns.Item(4).Width = 80
-            Catch myerro As MySqlException
-                MsgBox("Erro de leitura no banco de dados : " & myerro.Message)
-            End Try
-            objConn.Close()
-        Catch myerro As MySqlException
-            MessageBox.Show("Erro ao conectar com o Banco de dados : " & myerro.Message)
-        Finally
-            objConn.Dispose()
-        End Try
+        Select UCase("Visitante")
+            Case "VISITANTE"
+                If rbtCPF.Checked = True Then
+                    strDadosPesquisa = "SELECT Nome_txf, inscricoes.email_txf as Email, formulario_txf as Palestra, cpf_txf as CPF, pago_sel as Pagamento " _
+                                     & "FROM usuarios RIGHT JOIN inscricoes " _
+                                     & "ON usuarios.email_txf = inscricoes.email_txf " _
+                                     & "WHERE Cpf_txf = '" & mskCPF.Text.ToString & "'"
+                Else
+                    If rbtEmail.Checked = True Then
+                        strDadosPesquisa = "SELECT Nome_txf, inscricoes.email_txf as Email, formulario_txf as Palestra, cpf_txf as CPF, pago_sel as Pagamento " _
+                                    & "FROM usuarios RIGHT JOIN inscricoes " _
+                                    & "ON usuarios.email_txf = inscricoes.email_txf " _
+                                    & "WHERE inscricoes.Email_txf LIKE '%" & mskCPF.Text.ToString & "%'"
+                    Else
+                        MsgBox("Não foi selecionado o tipo de pesquisa!!!")
+                    End If
+                End If
+
+                Try
+                    objConn.Open()
+                    Try
+                        objMySQLAdapter = New MySqlDataAdapter(strDadosPesquisa, objConn)
+                        objMySQLAdapter.Fill(dtsMySQL)
+                        dgvDados.DataSource = dtsMySQL.Tables(0)
+                        mskCPF.Text = ""
+                        dgvDados.Columns.Item(0).Width = 200
+                        dgvDados.Columns.Item(1).Width = 200
+                        dgvDados.Columns.Item(4).Width = 80
+                    Catch myerro As MySqlException
+                        MsgBox("Erro de leitura no banco de dados : " & myerro.Message)
+                    End Try
+                    objConn.Close()
+                Catch myerro As MySqlException
+                    MessageBox.Show("Erro ao conectar com o Banco de dados : " & myerro.Message)
+                Finally
+                    objConn.Dispose()
+                End Try
+            Case "IMPRENSA"
+            Case "EXPOSITOR"
+        End Select
 
     End Sub
 
@@ -96,10 +106,30 @@ Public Class Form1
                     System.IO.File.Delete("C:\CSEtiqueta\arquivoEPL2.txt")
                 End If
                 swrArquivo = System.IO.File.CreateText("C:\CSEtiqueta\arquivoEPL2.txt")
-                swrArquivo.WriteLine("N")                                                                                           'Clear image buffer
-                swrArquivo.WriteLine("A10, 20, 0, 3, 1, 1, N, " & dgvDados.Rows(e.RowIndex).Cells(0).Value.ToString)                'Texto ASCII
-                swrArquivo.WriteLine("A20, 50, 0, 4, 1, 1, N, " & dgvDados.Rows(e.RowIndex).Cells(2).Value.ToString)                'Texto ASCII
-                swrArquivo.WriteLine("P1")                                                                                          'Imprie uma etiqueta
+                Select Case UCase("Visitante")
+                    Case "VISITANTE"
+                        swrArquivo.WriteLine("N")
+                        swrArquivo.WriteLine("A30, 20, 0, 4, 1, 1, N, PALESTRA DEUS E BOM")
+                        swrArquivo.WriteLine("A30, 60, 0, 4, 1, 1, N, CAMINHO A VERDADE E A VIDA")
+                        swrArquivo.WriteLine("A20, 120, 0, 3, 1, 1, N, ------------------------------")
+                        swrArquivo.WriteLine("A20, 160, 0, 3, 1, 1, N, VISITANTE")
+                        swrArquivo.WriteLine("A20, 200, 0, 3, 1, 1, N, ANDERSON FERREIRA DA COSTA")
+                        swrArquivo.WriteLine("P1")
+                    Case "IMPRENSA"
+                        swrArquivo.WriteLine("N")
+                        swrArquivo.WriteLine("A30, 40, 0, 4, 1, 1, N, ANDERSON FERREIRA DA COSTA")
+                        swrArquivo.WriteLine("A30, 80, 0, 3, 1, 1, N, ------------------------------")
+                        swrArquivo.WriteLine("A20, 120, 0, 3, 1, 1, N, IMPRENSA")
+                        swrArquivo.WriteLine("A20, 160, 0, 4, 1, 1, N, RBS - LAGES")
+                        swrArquivo.WriteLine("P1")
+                    Case "EXPOSITOR"
+                        swrArquivo.WriteLine("N")
+                        swrArquivo.WriteLine("A30, 40, 0, 4, 1, 1, N, ANDERSON FERREIRA DA COSTA")
+                        swrArquivo.WriteLine("A30, 80, 0, 3, 1, 1, N, ------------------------------")
+                        swrArquivo.WriteLine("A20, 120, 0, 3, 1, 1, N, EXPOSITOR")
+                        swrArquivo.WriteLine("A20, 160, 0, 4, 1, 1, N, SOFTECSUL TECNOLIGIA LTDA")
+                        swrArquivo.WriteLine("P1")
+                End Select
                 swrArquivo.Close()
 
                 Try
