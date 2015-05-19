@@ -33,6 +33,7 @@ Partial Class Form1
         Me.lblLPT = New System.Windows.Forms.Label()
         Me.cboLPT = New System.Windows.Forms.ComboBox()
         Me.cboTipo = New System.Windows.Forms.ComboBox()
+        Me.btnImprimir = New System.Windows.Forms.Button()
         CType(Me.dgvDados, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -106,6 +107,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.btnImprimir)
         Me.GroupBox1.Controls.Add(Me.cboTipo)
         Me.GroupBox1.Controls.Add(Me.btnSair)
         Me.GroupBox1.Controls.Add(Me.lblLPT)
@@ -133,7 +135,7 @@ Partial Class Form1
         'lblLPT
         '
         Me.lblLPT.AutoSize = True
-        Me.lblLPT.Location = New System.Drawing.Point(15, 73)
+        Me.lblLPT.Location = New System.Drawing.Point(377, 47)
         Me.lblLPT.Name = "lblLPT"
         Me.lblLPT.Size = New System.Drawing.Size(27, 13)
         Me.lblLPT.TabIndex = 18
@@ -142,7 +144,7 @@ Partial Class Form1
         'cboLPT
         '
         Me.cboLPT.FormattingEnabled = True
-        Me.cboLPT.Location = New System.Drawing.Point(48, 68)
+        Me.cboLPT.Location = New System.Drawing.Point(410, 42)
         Me.cboLPT.Name = "cboLPT"
         Me.cboLPT.Size = New System.Drawing.Size(44, 21)
         Me.cboLPT.TabIndex = 17
@@ -154,6 +156,15 @@ Partial Class Form1
         Me.cboTipo.Name = "cboTipo"
         Me.cboTipo.Size = New System.Drawing.Size(221, 21)
         Me.cboTipo.TabIndex = 20
+        '
+        'btnImprimir
+        '
+        Me.btnImprimir.Location = New System.Drawing.Point(490, 37)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(84, 28)
+        Me.btnImprimir.TabIndex = 21
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -183,5 +194,6 @@ Partial Class Form1
     Friend WithEvents cboLPT As System.Windows.Forms.ComboBox
     Friend WithEvents btnSair As System.Windows.Forms.Button
     Friend WithEvents cboTipo As System.Windows.Forms.ComboBox
+    Friend WithEvents btnImprimir As System.Windows.Forms.Button
 
 End Class
