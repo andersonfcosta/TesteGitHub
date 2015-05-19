@@ -11,7 +11,12 @@ Public Class Form1
         cboLPT.Items.Add("3")
         cboLPT.Items.Add("4")
         cboLPT.Items.Add("5")
+        cboTipo.Items.Add("VISITANTE")
+        cboTipo.Items.Add("IMPRENSA")
+        cboTipo.Items.Add("EXPOSITOR")
         cboLPT.SelectedIndex = 0
+        cboTipo.SelectedIndex = 0
+
     End Sub
 
     Private Sub rbtCPF_Click(sender As Object, e As EventArgs) Handles rbtCPF.Click
@@ -32,42 +37,163 @@ Public Class Form1
         Dim dtsMySQL As New DataSet
         Dim strDadosPesquisa As String
 
-        If rbtCPF.Checked = True Then
-            strDadosPesquisa = "SELECT Nome_txf, inscricoes.email_txf as Email, formulario_txf as Palestra, cpf_txf as CPF, pago_sel as Pagamento " _
-                             & "FROM usuarios RIGHT JOIN inscricoes " _
-                             & "ON usuarios.email_txf = inscricoes.email_txf " _
-                             & "WHERE Cpf_txf = '" & mskCPF.Text.ToString & "'"
-        Else
-            If rbtEmail.Checked = True Then
-                strDadosPesquisa = "SELECT Nome_txf, inscricoes.email_txf as Email, formulario_txf as Palestra, cpf_txf as CPF, pago_sel as Pagamento " _
-                            & "FROM usuarios RIGHT JOIN inscricoes " _
-                            & "ON usuarios.email_txf = inscricoes.email_txf " _
-                            & "WHERE inscricoes.Email_txf LIKE '%" & mskCPF.Text.ToString & "%'"
-            Else
-                MsgBox("Não foi selecionado o tipo de pesquisa!!!")
-            End If
-        End If
-        
-        Try
-            objConn.Open()
-            Try
-                objMySQLAdapter = New MySqlDataAdapter(strDadosPesquisa, objConn)
-                objMySQLAdapter.Fill(dtsMySQL)
-                dgvDados.DataSource = dtsMySQL.Tables(0)
-                mskCPF.Text = ""
-                dgvDados.Columns.Item(0).Width = 200
-                dgvDados.Columns.Item(1).Width = 200
-                dgvDados.Columns.Item(4).Width = 80
-            Catch myerro As MySqlException
-                MsgBox("Erro de leitura no banco de dados : " & myerro.Message)
-            End Try
-            objConn.Close()
-        Catch myerro As MySqlException
-            MessageBox.Show("Erro ao conectar com o Banco de dados : " & myerro.Message)
-        Finally
-            objConn.Dispose()
-        End Try
+        Select Case UCase(cboTipo.SelectedItem.ToString)
+            Case "VISITANTE"
+                If rbtCPF.Checked = True Then
+                    strDadosPesquisa = "SELECT Nome_txf as Nome, inscricoes.email_txf as Email, formulario_txf as Palestra, cpf_txf as CPF, pago_sel as Pagamento " _
+                                     & "FROM usuarios RIGHT JOIN inscricoes " _
+                                     & "ON usuarios.email_txf = inscricoes.email_txf " _
+                                     & "WHERE Cpf_txf = '" & mskCPF.Text.ToString & "'"
+                Else
+                    If rbtEmail.Checked = True Then
+                        strDadosPesquisa = "SELECT Nome_txf, inscricoes.email_txf as Email, formulario_txf as Palestra, cpf_txf as CPF, pago_sel as Pagamento " _
+                                    & "FROM usuarios RIGHT JOIN inscricoes " _
+                                    & "ON usuarios.email_txf = inscricoes.email_txf " _
+                                    & "WHERE inscricoes.Email_txf LIKE '%" & mskCPF.Text.ToString & "%'"
+                    Else
+                        MsgBox("Não foi selecionado o tipo de pesquisa!!!")
+                    End If
+                End If
 
+                Try
+                    objConn.Open()
+                    Try
+                        objMySQLAdapter = New MySqlDataAdapter(strDadosPesquisa, objConn)
+                        objMySQLAdapter.Fill(dtsMySQL)
+                        dgvDados.DataSource = dtsMySQL.Tables(0)
+                        mskCPF.Text = ""
+                        dgvDados.Columns.Item(0).Width = 200
+                        dgvDados.Columns.Item(1).Width = 200
+                        dgvDados.Columns.Item(4).Width = 80
+                    Catch myerro As MySqlException
+                        MsgBox("Erro de leitura no banco de dados : " & myerro.Message)
+                    End Try
+                    objConn.Close()
+                Catch myerro As MySqlException
+                    MessageBox.Show("Erro ao conectar com o Banco de dados : " & myerro.Message)
+                Finally
+                    objConn.Dispose()
+                End Try
+            Case "IMPRENSA"
+                If rbtCPF.Checked = True Then
+                    strDadosPesquisa = "SELECT Nome_txf as Nome, inscricoes_imprensa.email_txf as Email, Orgao_txf as Empresa, cpf_txf as CPF, Funcao_txf as Cargo " _
+                                     & "FROM usuarios RIGHT JOIN inscricoes_imprensa " _
+                                     & "ON usuarios.email_txf = inscricoes_imprensa.email_txf " _
+                                     & "WHERE Cpf_txf = '" & mskCPF.Text.ToString & "'"
+                Else
+                    If rbtEmail.Checked = True Then
+                        strDadosPesquisa = "SELECT Nome_txf as Nome, inscricoes_imprensa.email_txf as Email, Orgao_txf as Empresa, cpf_txf as CPF, Funcao_txf as Cargo " _
+                                    & "FROM usuarios RIGHT JOIN inscricoes_imprensa " _
+                                    & "ON usuarios.email_txf = inscricoes_imprensa.email_txf " _
+                                    & "WHERE inscricoes_imprensa.Email_txf LIKE '%" & mskCPF.Text.ToString & "%'"
+                    Else
+                        MsgBox("Não foi selecionado o tipo de pesquisa!!!")
+                    End If
+                End If
+
+                Try
+                    objConn.Open()
+                    Try
+                        objMySQLAdapter = New MySqlDataAdapter(strDadosPesquisa, objConn)
+                        objMySQLAdapter.Fill(dtsMySQL)
+                        dgvDados.DataSource = dtsMySQL.Tables(0)
+                        mskCPF.Text = ""
+                        dgvDados.Columns.Item(0).Width = 200
+                        dgvDados.Columns.Item(1).Width = 200
+                        dgvDados.Columns.Item(4).Width = 80
+                    Catch myerro As MySqlException
+                        MsgBox("Erro de leitura no banco de dados : " & myerro.Message)
+                    End Try
+                    objConn.Close()
+                Catch myerro As MySqlException
+                    MessageBox.Show("Erro ao conectar com o Banco de dados : " & myerro.Message)
+                Finally
+                    objConn.Dispose()
+                End Try
+            Case "EXPOSITOR"
+        End Select
+
+    End Sub
+
+
+    Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
+        If dgvDados.Rows.Count > 0 Then
+            '------------------
+            'REGRAS PARA VALIDAÇÃO DA ETIQUETA
+            '------------------
+            '1) Verificar o tamanho do campo NOME
+            '2) Verificar o tamanho do campo EMPRESA
+            '3) Verificar o tamanho do campo PALESTRAS
+            ') Verificar se o tipo é Expositor para verificar se o campo PAGO está como TRUE
+
+            '------------------
+            'IMPRIMIR ETIQUETA
+            '------------------
+            Dim swrArquivo As System.IO.StreamWriter
+
+            'verifica se o arquivo existe e apague se for necessário
+            If System.IO.File.Exists("C:\CSEtiqueta\arquivoEPL2.txt") Then
+                System.IO.File.Delete("C:\CSEtiqueta\arquivoEPL2.txt")
+            End If
+            swrArquivo = System.IO.File.CreateText("C:\CSEtiqueta\arquivoEPL2.txt")
+            Select Case UCase(cboTipo.SelectedItem.ToString)
+                Case "VISITANTE"
+                    '------------------
+                    'Valida 1
+                    '------------------
+                    If dgvDados.Rows.Count > 2 Then
+                        MsgBox("Para impressão da etiqueta e preciso" _
+                   & vbCrLf & "selecionar apenas registros de um VISITANTE !!! ", MsgBoxStyle.Critical, "Aviso do Sistema")
+                        Exit Sub
+                    End If
+                    '------------------
+                    'Valida 2
+                    '------------------
+                    If dgvDados.Rows.Count <= 0 Then
+                        MsgBox("Para impressão da etiqueta e preciso" _
+                   & vbCrLf & "selecionar pelo menos um registro !!! ", MsgBoxStyle.Critical, "Aviso do Sistema")
+                        Exit Sub
+                    End If
+                    swrArquivo.WriteLine("N")
+                    swrArquivo.WriteLine("A30, 20, 0, 4, 1, 1, N, " & dgvDados.Rows(0).Cells(2).Value.ToString)
+                    If dgvDados.Rows.Count > 1 Then
+                        swrArquivo.WriteLine("A30, 60, 0, 4, 1, 1, N, " & dgvDados.Rows(1).Cells(2).Value.ToString)
+                    End If
+                    swrArquivo.WriteLine("A20, 120, 0, 3, 1, 1, N, ------------------------------")
+                    swrArquivo.WriteLine("A20, 160, 0, 3, 1, 1, N, VISITANTE")
+                    swrArquivo.WriteLine("A20, 200, 0, 3, 1, 1, N, " & dgvDados.Rows(0).Cells(0).Value.ToString)
+                    swrArquivo.WriteLine("P1")
+                Case "IMPRENSA"
+                    '------------------
+                    'Valida 1
+                    '------------------
+                    If dgvDados.Rows.Count > 2 Then
+                        MsgBox("Para impressão da etiqueta e preciso" _
+                   & vbCrLf & "selecionar apenas registros de um INSCRIÇÃO !!! ", MsgBoxStyle.Critical, "Aviso do Sistema")
+                        Exit Sub
+                    End If
+                    swrArquivo.WriteLine("N")
+                    swrArquivo.WriteLine("A30, 40, 0, 4, 1, 1, N, " & dgvDados.Rows(0).Cells(0).Value.ToString)
+                    swrArquivo.WriteLine("A30, 80, 0, 3, 1, 1, N, ------------------------------")
+                    swrArquivo.WriteLine("A20, 120, 0, 3, 1, 1, N, IMPRENSA")
+                    swrArquivo.WriteLine("A20, 160, 0, 4, 1, 1, N, " & dgvDados.Rows(0).Cells(2).Value.ToString)
+                    swrArquivo.WriteLine("P1")
+                Case "EXPOSITOR"
+                    swrArquivo.WriteLine("N")
+                    swrArquivo.WriteLine("A30, 40, 0, 4, 1, 1, N, " & dgvDados.Rows(0).Cells(0).Value.ToString)
+                    swrArquivo.WriteLine("A30, 80, 0, 3, 1, 1, N, ------------------------------")
+                    swrArquivo.WriteLine("A20, 120, 0, 3, 1, 1, N, EXPOSITOR")
+                    swrArquivo.WriteLine("A20, 160, 0, 4, 1, 1, N, SOFTECSUL TECNOLIGIA LTDA")
+                    swrArquivo.WriteLine("P1")
+            End Select
+            swrArquivo.Close()
+
+            Try
+                'System.IO.File.Copy("C:\CSEtiqueta\arquivoEPL2.txt", "LPT " & cboLPT.Text)
+            Catch ex As Exception
+                Console.WriteLine("Erro ao enviar arquivo para impressora em LPT " & cboLPT.Text & "!")
+            End Try
+        End If
     End Sub
 
     Private Sub dgvDados_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDados.CellClick
@@ -75,31 +201,59 @@ Public Class Form1
             MsgBox("Não é possível gerar etiquetas para" _
         & vbCrLf & "palestras que não foram pagas !", MsgBoxStyle.Critical, "Aviso do Sistema")
         Else
-            If MsgBox("Deseja imprimir a etiqueta:" _
-           & vbCrLf & "Nome : " & dgvDados.Rows(e.RowIndex).Cells(0).Value.ToString _
-           & vbCrLf & "Palestra : " & dgvDados.Rows(e.RowIndex).Cells(2).Value.ToString, MsgBoxStyle.YesNo, "Aviso do Sistema") = MsgBoxResult.Yes Then
-                '------------------
-                'IMPRIMIR ETIQUETA
-                '------------------
-                Dim swrArquivo As System.IO.StreamWriter
+            ' If MsgBox("Deseja imprimir a etiqueta:" _
+            '& vbCrLf & "Nome : " & dgvDados.Rows(e.RowIndex).Cells(0).Value.ToString _
+            '& vbCrLf & "Palestra : " & dgvDados.Rows(e.RowIndex).Cells(2).Value.ToString, MsgBoxStyle.YesNo, "Aviso do Sistema") = MsgBoxResult.Yes Then
+            '     '------------------
+            '     'REGRAS PARA VALIDAÇÃO DA ETIQUETA
+            '     '------------------
+            '     '1) Verificar o tamanho do campo NOME
+            '     '2) Verificar o tamanho do campo EMPRESA
+            '     '3) Verificar o tamanho do campo PALESTRAS
+            '     ') Verificar se o tipo é Expositor para verificar se o campo PAGO está como TRUE
 
-                'verifica se o arquivo existe e apague se for necessário
-                If System.IO.File.Exists("C:\CSEtiqueta\arquivoEPL2.txt") Then
-                    System.IO.File.Delete("C:\CSEtiqueta\arquivoEPL2.txt")
-                End If
-                swrArquivo = System.IO.File.CreateText("C:\CSEtiqueta\arquivoEPL2.txt")
-                swrArquivo.WriteLine("N")                                                                                           'Clear image buffer
-                swrArquivo.WriteLine("A10, 20, 0, 3, 1, 1, N, " & dgvDados.Rows(e.RowIndex).Cells(0).Value.ToString)                'Texto ASCII
-                swrArquivo.WriteLine("A20, 50, 0, 4, 1, 1, N, " & dgvDados.Rows(e.RowIndex).Cells(2).Value.ToString)                'Texto ASCII
-                swrArquivo.WriteLine("P1")                                                                                          'Imprie uma etiqueta
-                swrArquivo.Close()
+            '     '------------------
+            '     'IMPRIMIR ETIQUETA
+            '     '------------------
+            '     Dim swrArquivo As System.IO.StreamWriter
 
-                Try
-                    System.IO.File.Copy("C:\CSEtiqueta\arquivoEPL2.txt", "LPT " & cboLPT.Text)
-                Catch ex As Exception
-                    Console.WriteLine("Erro ao enviar arquivo para impressora em LPT " & cboLPT.Text & "!")
-                End Try
-            End If
+            '     'verifica se o arquivo existe e apague se for necessário
+            '     If System.IO.File.Exists("C:\CSEtiqueta\arquivoEPL2.txt") Then
+            '         System.IO.File.Delete("C:\CSEtiqueta\arquivoEPL2.txt")
+            '     End If
+            '     swrArquivo = System.IO.File.CreateText("C:\CSEtiqueta\arquivoEPL2.txt")
+            '     Select Case UCase("Visitante")
+            '         Case "VISITANTE"
+            '             swrArquivo.WriteLine("N")
+            '             swrArquivo.WriteLine("A30, 20, 0, 4, 1, 1, N," & dgvDados.Rows(e.RowIndex).Cells(2).Value.ToString)
+            '             swrArquivo.WriteLine("A30, 60, 0, 4, 1, 1, N, CAMINHO A VERDADE E A VIDA")
+            '             swrArquivo.WriteLine("A20, 120, 0, 3, 1, 1, N, ------------------------------")
+            '             swrArquivo.WriteLine("A20, 160, 0, 3, 1, 1, N, VISITANTE")
+            '             swrArquivo.WriteLine("A20, 200, 0, 3, 1, 1, N, ANDERSON FERREIRA DA COSTA")
+            '             swrArquivo.WriteLine("P1")
+            '         Case "IMPRENSA"
+            '             swrArquivo.WriteLine("N")
+            '             swrArquivo.WriteLine("A30, 40, 0, 4, 1, 1, N, ANDERSON FERREIRA DA COSTA")
+            '             swrArquivo.WriteLine("A30, 80, 0, 3, 1, 1, N, ------------------------------")
+            '             swrArquivo.WriteLine("A20, 120, 0, 3, 1, 1, N, IMPRENSA")
+            '             swrArquivo.WriteLine("A20, 160, 0, 4, 1, 1, N, RBS - LAGES")
+            '             swrArquivo.WriteLine("P1")
+            '         Case "EXPOSITOR"
+            '             swrArquivo.WriteLine("N")
+            '             swrArquivo.WriteLine("A30, 40, 0, 4, 1, 1, N, ANDERSON FERREIRA DA COSTA")
+            '             swrArquivo.WriteLine("A30, 80, 0, 3, 1, 1, N, ------------------------------")
+            '             swrArquivo.WriteLine("A20, 120, 0, 3, 1, 1, N, EXPOSITOR")
+            '             swrArquivo.WriteLine("A20, 160, 0, 4, 1, 1, N, SOFTECSUL TECNOLIGIA LTDA")
+            '             swrArquivo.WriteLine("P1")
+            '     End Select
+            '     swrArquivo.Close()
+
+            '     Try
+            '         System.IO.File.Copy("C:\CSEtiqueta\arquivoEPL2.txt", "LPT " & cboLPT.Text)
+            '     Catch ex As Exception
+            '         Console.WriteLine("Erro ao enviar arquivo para impressora em LPT " & cboLPT.Text & "!")
+            '     End Try
+            ' End If
         End If
     End Sub
 
@@ -153,4 +307,5 @@ Public Class Form1
     Private Sub btnSair_Click(sender As Object, e As EventArgs) Handles btnSair.Click
         End
     End Sub
+
 End Class
