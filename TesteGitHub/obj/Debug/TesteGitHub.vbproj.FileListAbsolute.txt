@@ -10,3 +10,13 @@ E:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.vbproj.GenerateResource.
 E:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.exe
 E:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.xml
 E:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.pdb
+D:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.exe.config
+D:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.exe
+D:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.xml
+D:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.pdb
+D:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.Form1.resources
+D:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.Resources.resources
+D:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.vbproj.GenerateResource.Cache
+D:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.exe
+D:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.pdb
+D:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.xml
