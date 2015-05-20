@@ -14,7 +14,7 @@ Public Class Form1
         cboTipo.Items.Add("VISITANTE")
         cboTipo.Items.Add("IMPRENSA")
         cboTipo.Items.Add("EXPOSITOR")
-        cboLPT.SelectedIndex = 0
+        cboLPT.SelectedIndex = 2
         cboTipo.SelectedIndex = 0
     End Sub
 
@@ -114,7 +114,6 @@ Public Class Form1
 
     End Sub
 
-
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         If dgvDados.Rows.Count > 0 Then
             '------------------
@@ -153,14 +152,15 @@ Public Class Form1
                    & vbCrLf & "selecionar pelo menos um registro !!! ", MsgBoxStyle.Critical, "Aviso do Sistema")
                         Exit Sub
                     End If
+
                     swrArquivo.WriteLine("N")
-                    swrArquivo.WriteLine("A30, 20, 0, 4, 1, 1, N, " & dgvDados.Rows(0).Cells(2).Value.ToString)
+                    swrArquivo.WriteLine("A30,20,0,4,1,1,N," & """" & dgvDados.Rows(0).Cells(2).Value.ToString & """")
                     If dgvDados.Rows.Count > 1 Then
-                        swrArquivo.WriteLine("A30, 60, 0, 4, 1, 1, N, " & dgvDados.Rows(1).Cells(2).Value.ToString)
+                        swrArquivo.WriteLine("A30,60,0,4,1,1,N," & """" & dgvDados.Rows(1).Cells(2).Value.ToString & """")
                     End If
-                    swrArquivo.WriteLine("A20, 120, 0, 3, 1, 1, N, ------------------------------")
-                    swrArquivo.WriteLine("A20, 160, 0, 3, 1, 1, N, VISITANTE")
-                    swrArquivo.WriteLine("A20, 200, 0, 3, 1, 1, N, " & dgvDados.Rows(0).Cells(0).Value.ToString)
+                    swrArquivo.WriteLine("A20,120,0,3,1,1,N," & """" & "------------------------------" & """")
+                    swrArquivo.WriteLine("A20,160,0,3,1,1,N," & """" & "VISITANTE" & """")
+                    swrArquivo.WriteLine("A20,200,0,3,1,1,N," & """" & dgvDados.Rows(0).Cells(0).Value.ToString & """")
                     swrArquivo.WriteLine("P1")
                 Case "IMPRENSA"
                     '------------------
@@ -172,23 +172,23 @@ Public Class Form1
                         Exit Sub
                     End If
                     swrArquivo.WriteLine("N")
-                    swrArquivo.WriteLine("A30, 40, 0, 4, 1, 1, N, " & dgvDados.Rows(0).Cells(0).Value.ToString)
-                    swrArquivo.WriteLine("A30, 80, 0, 3, 1, 1, N, ------------------------------")
-                    swrArquivo.WriteLine("A20, 120, 0, 3, 1, 1, N, IMPRENSA")
-                    swrArquivo.WriteLine("A20, 160, 0, 4, 1, 1, N, " & dgvDados.Rows(0).Cells(2).Value.ToString)
+                    swrArquivo.WriteLine("A30,40,0,4,1,1,N," & """" & dgvDados.Rows(0).Cells(0).Value.ToString & """")
+                    swrArquivo.WriteLine("A30,80,0,3,1,1,N," & """" & "------------------------------" & """")
+                    swrArquivo.WriteLine("A20,120,0,3,1,1,N," & """" & "IMPRENSA" & """")
+                    swrArquivo.WriteLine("A20,160,0,4,1,1,N," & """" & dgvDados.Rows(0).Cells(2).Value.ToString & """")
                     swrArquivo.WriteLine("P1")
                 Case "EXPOSITOR"
                     swrArquivo.WriteLine("N")
-                    swrArquivo.WriteLine("A30, 40, 0, 4, 1, 1, N, " & dgvDados.Rows(0).Cells(0).Value.ToString)
-                    swrArquivo.WriteLine("A30, 80, 0, 3, 1, 1, N, ------------------------------")
-                    swrArquivo.WriteLine("A20, 120, 0, 3, 1, 1, N, EXPOSITOR")
-                    swrArquivo.WriteLine("A20, 160, 0, 4, 1, 1, N, SOFTECSUL TECNOLIGIA LTDA")
+                    swrArquivo.WriteLine("A30,40,0,4,1,1,N," & """" & dgvDados.Rows(0).Cells(0).Value.ToString & """")
+                    swrArquivo.WriteLine("A30,80,0,3,1,1,N," & """" & "------------------------------" & """")
+                    'swrArquivo.WriteLine("A20,120,0,3,1,1,N," & """" &  & """"))
+                    'swrArquivo.WriteLine("A20,160,0,4,1,1,N," & """" &  & """"))
                     swrArquivo.WriteLine("P1")
             End Select
             swrArquivo.Close()
 
             Try
-                'System.IO.File.Copy("C:\CSEtiqueta\arquivoEPL2.txt", "LPT " & cboLPT.Text)
+                System.IO.File.Copy("C:\CSEtiqueta\arquivoEPL2.txt", "LPT" & cboLPT.Text)
             Catch ex As Exception
                 Console.WriteLine("Erro ao enviar arquivo para impressora em LPT " & cboLPT.Text & "!")
             End Try
@@ -307,4 +307,9 @@ Public Class Form1
         End
     End Sub
 
+    Private Sub cboTipo_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboTipo.SelectedValueChanged
+        If cboTipo.Text = "EXPOSITOR" Then
+            frmExpositor.ShowDialog()
+        End If
+    End Sub
 End Class

@@ -20,3 +20,4 @@ D:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.vbproj.GenerateResource.
 D:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.exe
 D:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.pdb
 D:\GitHub\TesteGitHub\TesteGitHub\bin\Debug\TesteGitHub.xml
+E:\GitHub\TesteGitHub\TesteGitHub\obj\Debug\TesteGitHub.frmExpositor.resources
